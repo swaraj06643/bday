@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            flex-direction: column;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #ff0381;
+            clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 100%, 0 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.5s;
+            z-index: 10;
+        }
+        .envelope.open {
+            transform: translateY(-50px);
+        }
+        .card {
+            position: absolute;
+            width: 250px;
+            height: 150px;
+            background: rgb(255, 255, 255);
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+        }
+        .envelope.open + .card {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgb(255, 0, 174);
+            transform: rotate(-45deg);
+            box-shadow: -5px 5px 30px red;
+            animation: heartbeat 1.5s infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.2) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
+        }
+        .corner-heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+        .top-left { top: 10px; left: 10px; }
+        .top-right { top: 10px; right: 10px; }
+        .bottom-left { bottom: 10px; left: 10px; }
+        .bottom-right { bottom: 10px; right: 10px; }
+        .birthday-images {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .birthday-images img {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" onclick="toggleCard()"></div>
+    <div class="card">Happy Birthday Bestuieee! Ham hamesha hai tumhare saath, don't worry!Aur tum hamare ho 🎉 🎂💖</div>
+    <div class="heart top-left"></div>
+    <div class="heart top-right"></div>
+    <div class="heart bottom-left"></div>
+    <div class="heart bottom-right"></div>
+    
+    <div class="birthday-images">
+        <img src="bday1.jpeg.jpg" alt="Birthday Cake">
+        <img src="one.jpeg.jpg" alt="Balloons">
+        <img src="me.jpeg.jpg" alt="Gift Box">
+    </div>
+
+    <script>
+        function toggleCard() {
+            document.querySelector('.envelope').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
